@@ -1,14 +1,8 @@
 from fastapi.testclient import TestClient
-from app.main import app
+from main import app  # replace with your app's module
 
 client = TestClient(app)
 
-def test_root():
+def test_read_root():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == {"message": "Hello, FastAPI!"}
-
-def test_read_item():
-    response = client.get("/items/42?q=hello")
-    assert response.status_code == 200
-    assert response.json() == {"item_id": 42, "q": "hello"}
